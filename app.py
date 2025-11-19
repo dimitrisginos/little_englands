@@ -46,5 +46,6 @@ top_df = df.head(int(n))
 
 # Show result
 st.subheader("Top Picks:")
-st.write(top_df[["Home Team"]])
+for team in top_df["Home Team"]:
+    st.write(team)
 
