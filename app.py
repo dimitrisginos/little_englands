@@ -36,7 +36,7 @@ filtered_df = df[
 ]
 
 # ---- SORTING ----
-df = df.sort_values("O 3.5 IND", ascending=False)
+df = filtered_df.sort_values("O 3.5 IND", ascending=False)
 
 # ---- STREAMLIT UI ----
 st.title("Yindex 2.0")
