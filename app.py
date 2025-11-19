@@ -36,7 +36,7 @@ st.title("Yindex 2.0")
 st.write("Insert how many picks you want to see")
 
 # User input
-n = st.number_input("How many teams?", min_value=1, value=5)
+n = st.number_input("How many picks?", min_value=1, value=5)
 
 # If user enters too large a number → return all teams
 n = min(n, len(df))
