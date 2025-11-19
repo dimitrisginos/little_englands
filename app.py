@@ -27,6 +27,14 @@ df["O 3.5 IND"] = (
 
 df["INDEX"] = df["O 3.5 IND"] * df["ODD"]
 
+filtered_df = df[
+    (df["H 3.5"] >= 25) &
+    (df["A 3.5"] >= 25) &
+    (df["OH 3.5"] >= 25) &
+    (df["OA 3.5"] >= 25) &
+    (df["INDEX"] >= 140)
+]
+
 # ---- SORTING ----
 df = df.sort_values("O 3.5 IND", ascending=False)
 
