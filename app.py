@@ -31,9 +31,9 @@ df["INDEX"] = df["O 3.5 IND"] * df["ODD"]
 df = df.sort_values("O 3.5 IND", ascending=False)
 
 # ---- STREAMLIT UI ----
-st.title("Team Ranking by O 3.5 IND")
+st.title("Yindex 2.0")
 
-st.write("Insert how many teams you want to see, sorted by **O 3.5 IND (descending)**.")
+st.write("Insert how many picks you want to see")
 
 # User input
 n = st.number_input("How many teams?", min_value=1, value=5)
@@ -45,9 +45,6 @@ n = min(n, len(df))
 top_df = df.head(int(n))
 
 # Show result
-st.subheader("Top Teams:")
-st.write(top_df[["Home Team", "O 3.5 IND"]])
+st.subheader("Top Picks:")
+st.write(top_df[["Home Team"]])
 
-# Optional full table
-with st.expander("Show full data table"):
-    st.dataframe(df)
