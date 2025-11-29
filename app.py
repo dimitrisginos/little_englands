@@ -58,9 +58,6 @@ df["O 3.5 IND"] = (
 # Calculate INDEX
 df["INDEX"] = df["O 3.5 IND"] * df["ODD"]
 
-df
-
-
 # Filter based on your conditions
 filtered_df = df[
     (df["H 3.5"] >= 25) &
@@ -71,9 +68,6 @@ filtered_df = df[
 ]
 
 df = filtered_df.sort_values("O 3.5 IND", ascending=False)
-
-df
-
 
 # ---- SORTING ----
 df = filtered_df.sort_values("O 3.5 IND", ascending=False)
