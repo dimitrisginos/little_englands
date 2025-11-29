@@ -1,41 +1,79 @@
 import streamlit as st
 import pandas as pd
-
-# ---- DATASET ----
 data = {
     "Home Team": [
-        "Stourbridge", "Gosport", "Gloucester", "Southport", "Poole", "Darlington", "Bishops", "Spalding"
+        "Chesterfield", "Sutton", "York", "Bedford", "Buxton",
+        "Macclesfield", "Radcliffe", "Dover", "Burgess", "Canvey",
+        "Halesowen", "Leiston", "Redditch", "Dorchester", "Farnham",
+        "Tiverton", "Weymouth"
     ],
     "H 3.5": [
-        57, 75, 44, 56, 25, 56, 50, 57],
+        50, 40, 90, 50, 33,
+        38, 50, 56, 43, 57,
+        44, 67, 50, 56, 50,
+        29, 33
+    ],
     "OH 3.5": [
-        53, 59, 35, 28, 40, 44, 44, 50],
-    "A 3.5": [67, 44, 71, 50, 56, 56, 33, 44],
-    "OA 3.5": [47, 39, 60, 50, 44, 33, 39, 28],
-    "O 3.5 IND": [81.3, 79.6, 75.9, 66.3, 66.1, 65.0, 64.4, 61.1],
-    "ODD": [2.67, 2.35, 2.32, 2.62, 2.27, 2.42, 2.60, 2.42],
-    "L8 HA 3.5": [63, 63, 56, 56, 56, 50, 50, 38]
+        47, 45, 65, 37, 33,
+        44, 47, 37, 39, 35,
+        39, 42, 33, 44, 56,
+        47, 42
+    ],
+    "A 3.5": [
+        38, 70, 50, 33, 67,
+        56, 38, 38, 43, 44,
+        33, 62, 45, 44, 67,
+        44, 38
+    ],
+    "OA 3.5": [
+        41, 50, 55, 47, 68,
+        35, 44, 44, 56, 47,
+        41, 47, 47, 61, 39,
+        44, 44
+    ],
+    "ODD": [
+        2.60, 2.05, 1.65, 2.30, 2.15,
+        2.85, 2.40, 2.15, 2.67, 2.65,
+        2.50, 2.50, 2.72, 2.65, 2.12,
+        2.30, 2.52
+    ],
+    "L8 HA 3.5": [
+        44, 56, 50, 44, 56,
+        44, 50, 44, 50, 38,
+        50, 50, 38, 56, 56,
+        56, 56
+    ]
 }
-
 
 df = pd.DataFrame(data)
 
-# ---- CALCULATIONS ----
+
+# Calculate O 3.5 IND
 df["O 3.5 IND"] = (
     ((df["H 3.5"] + df["A 3.5"]) / 2) * 0.25 +
     ((df["OH 3.5"] + df["OA 3.5"]) / 2) +
     (df["L8 HA 3.5"] * 0.25)
 )
 
+# Calculate INDEX
 df["INDEX"] = df["O 3.5 IND"] * df["ODD"]
 
+df
+
+
+# Filter based on your conditions
 filtered_df = df[
     (df["H 3.5"] >= 25) &
     (df["A 3.5"] >= 25) &
     (df["OH 3.5"] >= 25) &
     (df["OA 3.5"] >= 25) &
-    (df["INDEX"] >= 140)
+    (df["INDEX"] >= 150)
 ]
+
+df = filtered_df.sort_values("O 3.5 IND", ascending=False)
+
+df
+
 
 # ---- SORTING ----
 df = filtered_df.sort_values("O 3.5 IND", ascending=False)
